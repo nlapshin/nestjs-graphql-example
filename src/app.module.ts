@@ -8,17 +8,23 @@ import { User } from './modules/users/user.model';
 
 @Module({
   imports: [
+    // Работа с БД
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'example',
-      password: 'example',
-      database: 'example',
+      host: '0.0.0.0',
+      port: 15432,
+      username: 'test-user',
+      password: 'test-password',
+      database: 'demo',
       entities: [ Team, User ],
       synchronize: true,
     }),
-    GraphQLModule.forRoot({ autoSchemaFile: true }),
+    // Работа с GRAPHQL
+    GraphQLModule.forRoot({ 
+      autoSchemaFile: 'schema.gql',
+      // включить
+      installSubscriptionHandlers: true, 
+    }),
 
     UserModule,
     TeamModule,

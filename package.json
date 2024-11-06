@@ -29,6 +29,7 @@
     "apollo-server-core": "^2.19.0",
     "apollo-server-express": "^2.19.0",
     "graphql": "^15.4.0",
+    "graphql-subscriptions": "^2.0.0",
     "graphql-tools": "^7.0.2",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",

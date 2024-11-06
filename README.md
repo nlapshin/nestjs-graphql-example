@@ -73,3 +73,64 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+REST API
+
+Сильно привязывается к HTTP протоколу.
+Использует статусы, методы, пути и прочие вещи, для взаимодействия.
+
+Пишут свой протокол(способ взаимодействия) поверх HTTP протокол
+Более высокоуровневая обертка на HTTP протокол.
+
+- схемы взаимодействия.
+- CRUD -> query(R) + mutation(CUD).
+- Вместо path -> что-то похожее на вызов функции. createUser(data), updateUser(data), deleteUser(data)
+
+Со стороны бэка:
+- Мы описываем схему
+- Мы описываем как получать конкретые поля в схеме(resolver-ы). Создаем резолверы.
+- Мы описываем как изменять данные(мутировать). Создаем мутации.
+
+teams: [Team!]
+
+teams: null +
+teams: [] +
+teams: [{ id: 1, name: 'test' }] +
+teams: [{ id: 1, name: 'test' }, null] -
+
+
+
+
+Представим что у нас есть 
+
+users -> orders -> orders-detail-info
+
+// Первый запрос. GET /users/1 - получаем юзера
+// Второй запрос. GET /users/1/orders - получаем заказы
+// Третий запрос. GET /orders/100500 - получаем информацию о заказах
+
+// Сформировать запрос специальным образом
+{
+  users: {
+    orders: {
+      info: {
+
+      }
+    }
+  }
+}
+
+# CRUD
+
+Какие методы нужно использовать HTTP REST API, чтобы сделать CRUD
+
+--- query
+R - Read GET getUsers, getUser, getActiveUser
+users
+
+--- mutation. У каждой мутации есть имя
+C - Create POST createUser
+U - Update PUT/PATCH updateUser
+D - Delete DELETE deleteUser
+
+GRAPHQL
